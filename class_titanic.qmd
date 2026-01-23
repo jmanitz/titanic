@@ -8,6 +8,16 @@ format:
 editor: visual
 ---
 
+## Objective & Prerequisites & Target Audience
+
+**Objective:** We exemplify classification methods using the Titanic case study. We use advanced methods like Random Forests and build these concepts from the ground up; no prior knowledge of Machine Learning is required.
+
+> To get the most out of this session, students should ideally have a foundational understanding of:
+>
+> -   **Basic Probability:** Understanding of random variables and distributions.
+> -   **Introductory Statistics:** Familiarity with the concept of regression (linear models) and hypothesis testing.
+> -   **R Programming:** Basic knowledge of the R syntax to follow the code implementation.
+
 ## Classification
 
 Classification describes the process of predicting a discrete label (category) based on input data.
@@ -22,15 +32,15 @@ Classification describes the process of predicting a discrete label (category) b
 
 ## Table of Contents
 
-1. Classical Titanic Dataset
+1.  Classical Titanic Dataset
 
-2. Machine Learning Workflow
+2.  Machine Learning Workflow
 
-3. **Decision Tree:** A non-linear, tree-structured approach that recursively splits data based on feature values to form decision rules, offering high interpretability.
+3.  **Decision Tree:** A non-linear, tree-structured approach that recursively splits data based on feature values to form decision rules, offering high interpretability.
 
-4. **Random Forest:** An ensemble method that builds multiple decision trees (a "forest") and takes a majority vote for the final prediction. 
+4.  **Random Forest:** An ensemble method that builds multiple decision trees (a "forest") and takes a majority vote for the final prediction.
 
-5. More Learning
+5.  More Learning
 
 ## Example: Classical Titanic Dataset
 
@@ -131,16 +141,15 @@ ggplot(dt, aes(x = Pclass, fill = Survived)) +
 2.  Feature Engineering (where the "science" happens).
 3.  Model Training & Selection.
 4.  Validation & Evaluation.
-5.  Deploy & Monitor  
+5.  Deploy & Monitor\
 :::
 
 ::: {.column width="60%"}
-![](/img/ml_workflow.PNG)
-[^1] 
+![](/img/ml_workflow.PNG) [^1]
 :::
 :::::
 
-[^1]:  Source: <https://towardsdatascience.com/the-machine-learning-workflow-explained-557abf882079/>
+[^1]: Source: <https://towardsdatascience.com/the-machine-learning-workflow-explained-557abf882079/>
 
 ## Data Splitting
 
@@ -161,7 +170,6 @@ Machine Learning (ML) uses dataset splits into training and test datasets to fin
 :::
 :::::
 
-
 <!-- ## Missing Data Imputation -->
 
 <!-- ```{r} -->
@@ -176,7 +184,7 @@ Machine Learning (ML) uses dataset splits into training and test datasets to fin
 ::: {.column width="50%"}
 ### Data Splitting
 
-Split our dataset in two, one dataset for training and the other one for testing. 
+Split our dataset in two, one dataset for training and the other one for testing.
 
 ```{r}
 #| echo: true
@@ -220,7 +228,7 @@ test_dt  <- bake(rf_rec, new_data = test) |>
   as.data.frame()
 ```
 :::
-:::
+:::::
 
 ## Decision Tree
 
@@ -251,17 +259,17 @@ rpart.plot::rpart.plot(tree)
 
 ::::: columns
 ::: {.column width="50%"}
-- Generate $B$ bootstrapped datasets of size $n$ (with resampling)
-- Train the method on each subset and obtain prediction $\hat f^{*b}(x)$ at a point $x$. 
-- Then, average all the predictions for this point $x$: $\hat f_{bag}(x) = \frac{1}{B} \sum_b \hat f^{*b}(x)$
+-   Generate $B$ bootstrapped datasets of size $n$ (with resampling)
+-   Train the method on each subset and obtain prediction $\hat f^{*b}(x)$ at a point $x$.
+-   Then, average all the predictions for this point $x$: $\hat f_{bag}(x) = \frac{1}{B} \sum_b \hat f^{*b}(x)$
 :::
-::: {.column width="50%"}
-![](/img/bagging.PNG)
-[^*]
 
-[^*]: Source: <https://pub.towardsai.net/bagging-vs-boosting-the-power-of-ensemble-methods-in-machine-learning-6404e33524e6>
+::: {.column width="50%"}
+![](/img/bagging.PNG) [^2]
 :::
-:::
+:::::
+
+[^2]: Source: <https://pub.towardsai.net/bagging-vs-boosting-the-power-of-ensemble-methods-in-machine-learning-6404e33524e6>
 
 <!-- ## From Bagging Trees to Random Forests -->
 
@@ -270,20 +278,21 @@ rpart.plot::rpart.plot(tree)
 <!-- Construct $B$ trees using bootstrapped datasets. Each tree is grown deep and not pruned:  -->
 
 <!-- - Results in high variance and low bias -->
+
 <!-- - Different features than the original with variation in number of terminal nodes -->
 
 <!-- **Random forests** select at each candidate split a random subset of features ($m < \sqrt{p}$) -->
 
 <!-- - Strong predictors are selected less often, which reduces correlation between bootstrapped trees -->
-<!-- - Larger variance reduction of decorrelated trees -->
 
+<!-- - Larger variance reduction of decorrelated trees -->
 
 ## Random Forest
 
 ::::: columns
 ::: {.column width="55%"}
 **Bagging trees** Construct $B$ trees using bootstrapped datasets. Each tree is grown deep and not pruned
- 
+
 **Random forests** select at each candidate split a random subset of features ($m < \sqrt{p}$)
 
 ```{r}
@@ -302,6 +311,7 @@ rf_fit <- rf_model %>%
   fit(Survived ~ ., data = train_dt)
 ```
 :::
+
 ::: {.column width="45%"}
 ```{r, fig.height=5.7, fig.width=5}
 # Variable importance
@@ -309,11 +319,11 @@ rf_fit %>%
   vip::vip(geom="point", num=20) 
 ```
 :::
-:::
+:::::
 
 ## Evaluate performance
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 #| echo: true
@@ -329,6 +339,7 @@ rf_pred %>%
 ```
 
 AUC / ROC
+
 ```{r}
 #| echo: true
 rf_probs <- rf_fit %>%
@@ -337,6 +348,7 @@ rf_probs <- rf_fit %>%
 AUC <- rf_probs %>% 
   roc_auc(Survived, .pred_Survived)
 ```
+
 <!-- # rf_pred %>% metric_set(accuracy, sens, spec)(truth=Survived, estimate=.pred_class)  -->
 :::
 
@@ -350,7 +362,21 @@ rf_probs %>% roc_curve(Survived, .pred_Survived) %>%
   theme_minimal()
 ```
 :::
-:::
+:::::
+
+## Quick Knowledge Check
+
+1. **Variable Importance:** Which variable do you think was the strongest predictor across all models?
+    a) Passenger Class
+    b) Sex/Gender
+    c) Age
+    d) Port of Embarkation
+  
+2. **Model Complexity:** Why might the Decision Tree be preferable over a Random Forest in a courtroom or medical setting?
+
+*Hint: Think about "Interpretability" vs. "Black Box".*
+
+3. **The "Human" Factor:** Based on our $R^2$ or Accuracy, can we ever predict survival with 100% certainty? Why or why not?
 
 ## Other Classification Approaches
 
@@ -368,10 +394,9 @@ rf_probs %>% roc_curve(Survived, .pred_Survived) %>%
 
 ## Further Reading & Exercises
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
-
-James, Witten, Hastie and Tibshirani. An Introduction to Statistical Learning (**R/Python**) 
+James, Witten, Hastie and Tibshirani. An Introduction to Statistical Learning (**R/Python**)
 
 ```{=html}
 <iframe width="780" height="500" src="https://www.statlearning.com/" title="PDF’s available online"></iframe>
@@ -380,10 +405,11 @@ James, Witten, Hastie and Tibshirani. An Introduction to Statistical Learning (*
 
 ::: {.column width="50%"}
 <!-- ![](/img/book.PNG) -->
+
 Kuhn and Silge. **Tidy Modeling with R**: A Framework for Modeling in the Tidyverse.
+
 ```{=html}
 <iframe width="780" height="500" src="https://www.tmwr.org/" title="Available online"></iframe>
 ```
 :::
-:::
-
+:::::
