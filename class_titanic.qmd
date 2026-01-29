@@ -145,7 +145,7 @@ ggplot(dt, aes(x = Pclass, fill = Survived)) +
 :::
 
 ::: {.column width="60%"}
-![](/img/ml_workflow.PNG) [^1]
+![](/images/ml_workflow.PNG) [^1]
 :::
 :::::
 
@@ -166,7 +166,7 @@ Machine Learning (ML) uses dataset splits into training and test datasets to fin
 :::
 
 ::: {.column width="50%"}
-![](/img/ml_eval.PNG)
+![](/images/ml_eval.PNG)
 :::
 :::::
 
@@ -265,7 +265,7 @@ rpart.plot::rpart.plot(tree)
 :::
 
 ::: {.column width="50%"}
-![](/img/bagging.PNG) [^2]
+![](/images/bagging.PNG) [^2]
 :::
 :::::
 
@@ -406,7 +406,7 @@ James, Witten, Hastie and Tibshirani. An Introduction to Statistical Learning (*
 :::
 
 ::: {.column width="50%"}
-<!-- ![](/img/book.PNG) -->
+<!-- ![](/images/book.PNG) -->
 
 Kuhn and Silge. **Tidy Modeling with R**: A Framework for Modeling in the Tidyverse.
 
