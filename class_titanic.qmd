@@ -378,6 +378,8 @@ rf_probs %>% roc_curve(Survived, .pred_Survived) %>%
 
 3. **The "Human" Factor:** Based on our $R^2$ or Accuracy, can we ever predict survival with 100% certainty? Why or why not?
 
+# More Learning
+
 ## Other Classification Approaches
 
 -   **Logistic Regression:** A linear model for binary classification that estimates the probability of a data point belonging to a particular class using the sigmoid function.
