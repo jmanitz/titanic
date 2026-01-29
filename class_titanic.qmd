@@ -146,7 +146,7 @@ ggplot(dt, aes(x = Pclass, fill = Survived)) +
 :::
 
 ::: {.column width="60%"}
-![](/class_titanic_files/images/ml_workflow.PNG) [^1]
+![](/images/ml_workflow.PNG) [^1]
 :::
 :::::
 
@@ -167,7 +167,7 @@ Machine Learning (ML) uses dataset splits into training and test datasets to fin
 :::
 
 ::: {.column width="50%"}
-![](/class_titanic_files/images/ml_eval.PNG)
+![](/images/ml_eval.PNG)
 :::
 :::::
 
@@ -266,7 +266,7 @@ rpart.plot::rpart.plot(tree)
 :::
 
 ::: {.column width="50%"}
-![](/class_titanic_files/images/bagging.PNG) [^2]
+![](/images/bagging.PNG) [^2]
 :::
 :::::
 
@@ -401,18 +401,19 @@ rf_probs %>% roc_curve(Survived, .pred_Survived) %>%
 ::: {.column width="50%"}
 James, Witten, Hastie and Tibshirani. An Introduction to Statistical Learning (**R/Python**)
 
-```{=html}
-<iframe width="780" height="500" src="https://www.statlearning.com/" title="PDF’s available online"></iframe>
-```
+![](/images/book.PNG){height=6in}
+<!-- ```{=html} -->
+<!-- <iframe width="780" height="500" src="https://www.statlearning.com/" title="PDF’s available online"></iframe> -->
+<!-- ``` -->
 :::
 
 ::: {.column width="50%"}
-<!-- ![](/class_titanic_files/images/book.PNG) -->
 
 Kuhn and Silge. **Tidy Modeling with R**: A Framework for Modeling in the Tidyverse.
 
-```{=html}
-<iframe width="780" height="500" src="https://www.tmwr.org/" title="Available online"></iframe>
-```
+![](/images/cover.PNG){height=6in}
+<!-- ```{=html} -->
+<!-- <iframe width="780" height="500" src="https://www.tmwr.org/" title="Available online"></iframe> -->
+<!-- ``` -->
 :::
 :::::
